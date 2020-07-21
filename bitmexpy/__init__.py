@@ -1,0 +1,2 @@
+from bitmexpy.bitmexpy.bucket_trades import map_bucket_trades
+from bitmexpy.bucket_trades import bucket_trades, map_bucket_trades

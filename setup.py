@@ -1,10 +1,10 @@
-import setuptools
+from setuptools import setup, find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setuptools.setup(
-    name="bitmexpy", # Replace with your own username
+setup(
+    name="bitmexpy", 
     version="0.0.1",
     author="Harry Fisher",
     author_email="harryfisher21@gmail.com",
@@ -12,11 +12,17 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/hfshr/bitmexpy",
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    install_requires=[
+        'pandas',
+        'requests',
+        'numpy',
+        'datetime'
+    ],
+    python_requires=">=3.6",
 )
