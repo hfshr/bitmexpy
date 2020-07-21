@@ -3,14 +3,6 @@ import pandas as pd
 from datetime import datetime
 from time import sleep
 
-"""
-
-Functions
----------
-- `bucket_trades` -- Return bucketed trade data.
-- `map_bucket_trades` -- Return bucketed trade data over an extended periond of time
-"""
-__all__ = ["bucket_trades", "map_bucket_trades"]
 
 def bucket_trades(
     symbol="XBTUSD",
