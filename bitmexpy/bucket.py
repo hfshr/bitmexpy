@@ -8,8 +8,8 @@ def bucket_trades(
     symbol="XBTUSD",
     count="1000",
     binSize="1d",
-    reverse="false",
-    start_date="2020-01-01",
+    reverse="true",
+    start_date="2020-01-01"
 ):
     """
     bucket_trades() retrieves open high low close (OHLC) data for the specified symbol/time frame.
@@ -17,11 +17,11 @@ def bucket_trades(
     consider using map_bucket_trades().
 
     Args:
-        symbol (str, optional): [The time interval to bucket by, must be one of: 
-        "1m", "5m", "1h" or "1d".]. Defaults to "XBTUSD".
-        count (str, optional): [description]. Defaults to "1000".
-        binSize (str, optional): [description]. Defaults to "1d".
-        reverse (str, optional): [description]. Defaults to "false".
+        symbol (str, optional):  Defaults to "XBTUSD".
+        count (str, optional): Number of rows to return. Defaults to "1000".
+        binSize (str, optional): The time interval to bucket by, must be one of: 
+        "1m", "5m", "1h" or "1d". Defaults to "1d".
+        reverse (str, optional): If "true", result will be ordered with starting with the newest. Defaults to "false".
         start_date (str, optional): [description]. Defaults to "2020-01-01".
 
     Returns:
@@ -53,7 +53,7 @@ def map_bucket_trades(
     symbol="XBTUSD",
     count="1000",
     binSize="1d",
-    reverse="false",
+    reverse="true",
     start_date="2015-09-25 13:00:00",
     end_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 ):
@@ -63,12 +63,12 @@ def map_bucket_trades(
         symbol (str, optional): [description]. Defaults to "XBTUSD".
         count (str, optional): [description]. Defaults to "1000".
         binSize (str, optional): [description]. Defaults to "1d".
-        reverse (str, optional): [description]. Defaults to "false".
+        reverse (str, optional): [description]. Defaults to "true".
         start_date (str, optional): [description]. Defaults to "2015-09-25 13:00:00".
         end_date ([type], optional): [description]. Defaults to datetime.now().strftime("%Y-%m-%d %H:%M:%S").
 
     Returns:
-        [type]: [description]
+        pandas df: dataframe containing bucketed trade data
     """
 
     time_dict = {"1d": "1000 D", "1h": "1000 H", "5m": "5000 T", "1m": "1000 T"}
