@@ -13,14 +13,17 @@ For data spanning more one API call (there is a 1000 row limit per API call) `ma
 Examples
 --------
 
-Request: Last 100 days of data for symbol XBTUSD:
+Below are some simple examples of current functionality::
 
-    xbt = bucket_trades(symbol = "XBTUSD", 
-                           reverse = "true",
-                           count = "100)
+        # Request: Last 100 days of data for symbol XBTUSD:
+
+        xbt = bucket_trades(symbol = "XBTUSD", 
+                            reverse = "true",
+                            count = "100)
 
 
-Request: Hourly data since 1/1/2018
+        # Request: Hourly data since 2019-01-01
 
-    eth = map_bucket_trades(symbol = "ETHUSD",
-                            start_date = "2018-01-01")
+        eth = map_bucket_trades(symbol = "ETHUSD",
+                                start_date = "2019-01-01",
+                                binSize = "1h)
