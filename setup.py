@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setup(
     name="bitmexpy", 
-    version="0.0.1",
+    version="0.0.2",
     author="Harry Fisher",
     author_email="harryfisher21@gmail.com",
     description="python client for BitMEX's API",

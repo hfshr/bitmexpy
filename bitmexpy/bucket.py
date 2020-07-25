@@ -9,7 +9,7 @@ def bucket_trades(
     count="1000",
     binSize="1d",
     reverse="true",
-    start_date="2020-01-01"
+    startTime="2020-01-01"
 ):
     """
     bucket_trades() retrieves open high low close (OHLC) data for the specified symbol/time frame.
@@ -21,8 +21,8 @@ def bucket_trades(
         count (str, optional): Number of rows to return. Defaults to "1000".
         binSize (str, optional): The time interval to bucket by, must be one of: 
         "1m", "5m", "1h" or "1d". Defaults to "1d".
-        reverse (str, optional): If "true", result will be ordered with starting with the newest. Defaults to "false".
-        start_date (str, optional): [description]. Defaults to "2020-01-01".
+        reverse (str, optional): If "true", result will be ordered with starting with the newest. Defaults to "true".
+        startTime (str, optional): Start date of data. Defaults to "2020-01-01".
 
     Returns:
         pandas df: dataframe containing bucketed trade data
@@ -39,7 +39,7 @@ def bucket_trades(
         + "&count="
         + count
         + "&startTime="
-        + start_date
+        + startTime
     )
 
     df = requests.get(url)
@@ -54,18 +54,19 @@ def map_bucket_trades(
     count="1000",
     binSize="1d",
     reverse="true",
-    start_date="2015-09-25 13:00:00",
-    end_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    startTime="2015-09-25 13:00:00",
+    endTime=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 ):
     """Bucket trade data over an extended period
 
     Args:
-        symbol (str, optional): [description]. Defaults to "XBTUSD".
-        count (str, optional): [description]. Defaults to "1000".
-        binSize (str, optional): [description]. Defaults to "1d".
-        reverse (str, optional): [description]. Defaults to "true".
-        start_date (str, optional): [description]. Defaults to "2015-09-25 13:00:00".
-        end_date ([type], optional): [description]. Defaults to datetime.now().strftime("%Y-%m-%d %H:%M:%S").
+        symbol (str, optional): Instrument ticker. Defaults to "XBTUSD".
+        count (str, optional): Number of rows to return. Defaults to "1000".
+        binSize (str, optional): The time interval to bucket by, must be one of: 
+        "1m", "5m", "1h" or "1d". Defaults to "1d".
+        reverse (str, optional): If "true", result will be ordered with starting with the newest. Defaults to "true".
+        startTime (str, optional): Start date of data. Defaults to "2015-09-25 13:00:00".
+        endTime ([type], optional): End date of data. Defaults to datetime.now().strftime("%Y-%m-%d %H:%M:%S").
 
     Returns:
         pandas df: dataframe containing bucketed trade data
@@ -73,7 +74,7 @@ def map_bucket_trades(
 
     time_dict = {"1d": "1000 D", "1h": "1000 H", "5m": "5000 T", "1m": "1000 T"}
 
-    dates = pd.date_range(start=start_date, end=end_date, freq=time_dict[binSize])
+    dates = pd.date_range(start=startTime, end=endTime, freq=time_dict[binSize])
 
     data = []
 
@@ -84,7 +85,7 @@ def map_bucket_trades(
             reverse=reverse,
             symbol=symbol,
             count=count,
-            start_date=date,
+            startTime=date,
         )
         data.append(xbt)
         sleep(1)
