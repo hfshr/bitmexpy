@@ -1,1 +1,1 @@
-import bucket, trades, symbols
+from bitmexpy import bucket, trades

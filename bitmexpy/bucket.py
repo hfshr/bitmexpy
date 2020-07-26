@@ -2,14 +2,11 @@ import requests
 import pandas as pd
 from datetime import datetime
 from time import sleep
+from bitmexpy import symbols
 
 
 def bucket_trades(
-    symbol="XBTUSD",
-    count="1000",
-    binSize="1d",
-    reverse="true",
-    startTime="2020-01-01"
+    symbol="XBTUSD", count="1000", binSize="1d", reverse="true", startTime="2020-01-01"
 ):
     """
     bucket_trades() retrieves open high low close (OHLC) data for the specified symbol/time frame.
@@ -17,7 +14,7 @@ def bucket_trades(
     consider using map_bucket_trades().
 
     Args:
-        symbol (str, optional):  Defaults to "XBTUSD".
+        symbol (str, optional): Instrument ticker. Defaults to "XBTUSD".
         count (str, optional): Number of rows to return. Defaults to "1000".
         binSize (str, optional): The time interval to bucket by, must be one of: 
         "1m", "5m", "1h" or "1d". Defaults to "1d".
@@ -27,6 +24,11 @@ def bucket_trades(
     Returns:
         pandas df: dataframe containing bucketed trade data
     """
+
+    if symbol not in symbols.AS:
+        print("Symbol must be one of:")
+        print(*symbols.AS, sep="\n")
+        return
 
     url = (
         "https://www.bitmex.com/api/v1/trade/bucketed?partial=false&"
@@ -55,7 +57,7 @@ def map_bucket_trades(
     binSize="1d",
     reverse="true",
     startTime="2015-09-25 13:00:00",
-    endTime=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    endTime=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 ):
     """Bucket trade data over an extended period
 
@@ -71,6 +73,11 @@ def map_bucket_trades(
     Returns:
         pandas df: dataframe containing bucketed trade data
     """
+
+    if symbol not in symbols.AS:
+        print("Symbol must be one of:")
+        print(*symbols.AS, sep="\n")
+        return
 
     time_dict = {"1d": "1000 D", "1h": "1000 H", "5m": "5000 T", "1m": "1000 T"}
 
