@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-with open("README.rst", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
     name="bitmexpy", 
-    version="0.0.3",
+    version="0.0.5",
     author="Harry Fisher",
     author_email="harryfisher21@gmail.com",
     description="python client for BitMEX's API",
